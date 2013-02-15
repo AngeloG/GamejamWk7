@@ -19,7 +19,11 @@ namespace Gamejam
     public Gamejam()
     {
       graphics = new GraphicsDeviceManager(this);
-      Content.RootDirectory = "Content";
+#if DEBUG
+      Content.RootDirectory = "..\\..\\Content";
+#else
+      Content.RootDirectory = "..\\Content";
+#endif
     }
 
     protected override void Initialize()
