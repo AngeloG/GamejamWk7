@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Gamejam
 {
-  public class Content
+  public class CContent
   {
     static ContentManager cm_cmContentManager;
     static GraphicsDevice cm_gdGraphicsDevice;

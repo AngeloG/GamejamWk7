@@ -31,15 +31,20 @@ namespace Gamejam
 
     public void SetTexture(string strFilename)
     {
-      ent_texTexture = Content.GetTexture(strFilename);
+      ent_texTexture = CContent.GetTexture(strFilename);
       ent_vSize = new Vector2(ent_texTexture.Width, ent_texTexture.Height);
     }
 
     public Rectangle GetCollision()
     {
+      Vector2 vPos = Gamejam.ScaleVector(ent_vPosition);
+      Vector2 vSize = Gamejam.ScaleVector(ent_vSize);
+
       return new Rectangle(
-        (int)ent_vPosition.X, (int)ent_vPosition.Y,
-        (int)ent_vSize.X, (int)ent_vSize.Y);
+        (int)(vPos.X - vSize.X / 2), // x
+        (int)(vPos.Y - vSize.Y / 2), // y
+        (int)vSize.X,  // w
+        (int)vSize.Y); // h
     }
 
     public virtual void Update()

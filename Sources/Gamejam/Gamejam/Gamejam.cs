@@ -85,11 +85,13 @@ namespace Gamejam
 
     protected override void Initialize()
     {
+      base.Initialize();
+
+      CContent.Initialize(Content, GraphicsDevice);
+
       // add player
       Player ply = new Player();
       ply.Initialize();
-
-      base.Initialize();
     }
 
     protected override void LoadContent()

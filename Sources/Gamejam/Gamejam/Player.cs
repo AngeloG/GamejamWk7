@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace Gamejam
 {
@@ -9,7 +10,10 @@ namespace Gamejam
   {
     public Player()
     {
-
+      SetTexture("Player.png");
+      ent_vPosition = new Vector2(
+        Gamejam.ScreenWidth / 2,    // x
+        Gamejam.ScreenHeight - 30); // y
     }
 
     public override void Update()
@@ -21,7 +25,7 @@ namespace Gamejam
 
     public override void Render()
     {
-
+      Gamejam.SpriteBatch.Draw(ent_texTexture, GetCollision(), Color.White);
 
       base.Render();
     }
