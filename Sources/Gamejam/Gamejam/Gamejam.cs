@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 namespace Gamejam
 {
@@ -16,17 +17,39 @@ namespace Gamejam
     public GraphicsDeviceManager graphics;
     public SpriteBatch spriteBatch;
 
-    public static float gam_fScreenWidth = 768;
-    public static float gam_fScreenHeight = 1024;
+    private static float gam_fScreenWidth = 768;
+    private static float gam_fScreenHeight = 1024;
     public static float gam_fGameScale = 0.75f;
+
+    public static List<Entity> gam_aEntities = new List<Entity>();
 
     public static Vector2 ScaleVector(Vector2 v)
     {
       return v * gam_fGameScale;
     }
 
+    public static void Assert(bool bCondition)
+    {
+      Debug.Assert(bCondition);
+    }
+
+    public static Player GetPlayer()
+    {
+      for (int i = 0; i < gam_aEntities.Count(); i++) {
+        if (gam_aEntities[i].ent_strClassName == "Player") {
+          return (Player)gam_aEntities[i];
+        }
+      }
+      Assert(false);
+      return null;
+    }
+
+    public static Gamejam Instance;
+
     public Gamejam()
     {
+      Instance = this;
+
       graphics = new GraphicsDeviceManager(this);
 
       float fScreenW = gam_fScreenWidth * gam_fGameScale;
@@ -47,7 +70,9 @@ namespace Gamejam
 
     protected override void Initialize()
     {
-
+      // add player
+      Player ply = new Player();
+      ply.Initialize();
 
       base.Initialize();
     }
