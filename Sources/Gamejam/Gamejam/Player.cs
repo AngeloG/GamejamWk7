@@ -15,8 +15,8 @@ namespace Gamejam
     {
       SetTexture("Player.png");
       ent_vPosition = new Vector2(
-        Gamejam.ScreenWidth / 2,    // x
-        Gamejam.ScreenHeight - 30); // y
+        Gamejam.gam_fScreenWidth / 2,    // x
+        Gamejam.gam_fScreenHeight - 30); // y
     }
 
     public override void Update()
