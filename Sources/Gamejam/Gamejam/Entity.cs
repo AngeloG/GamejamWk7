@@ -17,6 +17,8 @@ namespace Gamejam
 
     public Texture2D ent_texTexture;
 
+    public Entity ent_entCollider;
+
     public Entity()
     {
       ent_vPosition = new Vector2(0, 0);
@@ -50,9 +52,46 @@ namespace Gamejam
     public virtual void Update()
     {
       ent_vPosition += ent_vVelocity;
+
+      for (int i = 0; i < Gamejam.gam_aEntities.Count(); i++) {
+        Entity ent = Gamejam.gam_aEntities[i];
+
+        if (ent == this) {
+          continue;
+        }
+
+        if (ent.GetCollision().Intersects(GetCollision())) {
+          if (ent.ent_entCollider != this) {
+            ent.ent_entCollider = this;
+            OnCollisionEnter(ent);
+          } else {
+            OnCollision(ent);
+          }
+        } else {
+          if (ent.ent_entCollider == this) {
+            ent.ent_entCollider = null;
+            OnCollisionLeave(ent);
+          }
+        }
+      }
     }
 
     public virtual void Render()
+    {
+
+    }
+
+    public virtual void OnCollisionEnter(Entity entOther)
+    {
+
+    }
+
+    public virtual void OnCollision(Entity entOther)
+    {
+
+    }
+
+    public virtual void OnCollisionLeave(Entity entOther)
     {
 
     }
