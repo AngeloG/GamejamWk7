@@ -87,19 +87,6 @@ namespace Gamejam
 
       CContent.Initialize(Content, GraphicsDevice);
 
-      // add player
-      Player ply = new Player();
-      ply.Initialize();
-
-      //testing food rendering
-      Food testFood = new Food();
-      testFood.Initialize();
-    }
-
-    protected override void LoadContent()
-    {
-      spriteBatch = new SpriteBatch(GraphicsDevice);
-
       // precache all files
       string[] astrFiles = Directory.GetFiles(Content.RootDirectory);
       for (int i = 0; i < astrFiles.Length; i++) {
@@ -134,6 +121,21 @@ namespace Gamejam
           Console.WriteLine("Not a precachable file");
         }
       }
+
+      // add player
+      Player ply = new Player();
+      ply.Initialize();
+
+      //testing food rendering
+      Food testFood = new Food();
+      testFood.Initialize();
+    }
+
+    protected override void LoadContent()
+    {
+      spriteBatch = new SpriteBatch(GraphicsDevice);
+
+
     }
 
     protected override void UnloadContent()
