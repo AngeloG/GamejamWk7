@@ -97,12 +97,6 @@ namespace Gamejam
 
         bool bFound = false;
 
-        // if .xnb, this is _probably_ a font...
-        if (strFileName.EndsWith(".xnb")) {
-          CContent.GetFont(strFileName.Replace(".xnb", ""));
-          bFound = true;
-        }
-
         // if .wav, it's a sound
         if (strFileName.EndsWith(".wav")) {
           CContent.GetSound(strFileName);
