@@ -11,15 +11,10 @@ namespace Gamejam
     public Food()
     {
       SetTexture("TestFood.png");
+      ent_vVelocity.X = 3f;
+      ent_vVelocity.Y = 1;
     }
 
-    public enum Direction
-    {
-      LEFT,
-      RIGHT
-    }
-
-    public Direction curDirection = Direction.RIGHT;
     public override void Update()
     {
       if (ent_vPosition.X > Gamejam.gam_fScreenWidth)
@@ -31,21 +26,12 @@ namespace Gamejam
         ToggleDirection();
       }
 
-      ent_vPosition.X += curDirection == Direction.RIGHT ? 1 : -1; 
-
       base.Update();
     }
 
     private void ToggleDirection()
     {
-      if (curDirection == Direction.LEFT)
-      {
-        curDirection = Direction.RIGHT;
-      }
-      else
-      {
-        curDirection = Direction.LEFT;
-      }
+      ent_vVelocity.X = -ent_vVelocity.X;
     }
 
     public override void Render()
