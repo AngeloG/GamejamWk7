@@ -55,5 +55,19 @@ namespace Gamejam
 
       base.Render();
     }
+
+    public override void OnCollisionEnter(Entity entOther)
+    {
+
+
+      base.OnCollisionEnter(entOther);
+    }
+
+    public override void OnCollisionLeave(Entity entOther)
+    {
+
+
+      base.OnCollisionLeave(entOther);
+    }
   }
 }
