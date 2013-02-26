@@ -46,6 +46,11 @@ namespace Gamejam
       return null;
     }
 
+    public static void PlaySound(string strFilename)
+    {
+      CContent.GetSound(strFilename).Play();
+    }
+
     public static Gamejam Instance;
 
     public static SpriteBatch SpriteBatch
