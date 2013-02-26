@@ -16,19 +16,24 @@ namespace Gamejam
     public GraphicsDeviceManager graphics;
     public SpriteBatch spriteBatch;
 
+    public static float gam_fScreenWidth = 768;
+    public static float gam_fScreenHeight = 1024;
+    public static float gam_fGameScale = 0.75f;
+
     public static Vector2 ScaleVector(Vector2 v)
     {
-      return v / 2f;
+      return v * gam_fGameScale;
     }
 
     public Gamejam()
     {
       graphics = new GraphicsDeviceManager(this);
-      graphics.PreferredBackBufferWidth = 768;
-      graphics.PreferredBackBufferHeight = 1024;
 
-      graphics.PreferredBackBufferWidth /= 2;
-      graphics.PreferredBackBufferHeight /= 2;
+      float fScreenW = gam_fScreenWidth * gam_fGameScale;
+      float fScreenH = gam_fScreenHeight * gam_fGameScale;
+
+      graphics.PreferredBackBufferWidth = (int)fScreenW;
+      graphics.PreferredBackBufferHeight = (int)fScreenH;
 
       // we only use the Content object for actual content that has to be
       // compiled, we don't use it for things like textures/sounds, as these
