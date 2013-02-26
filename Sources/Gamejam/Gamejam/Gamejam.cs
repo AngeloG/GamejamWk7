@@ -17,6 +17,8 @@ namespace Gamejam
     public GraphicsDeviceManager graphics;
     public SpriteBatch spriteBatch;
 
+    public static Random rnd = new Random();
+
     public static float gam_fScreenWidth = 768;
     public static float gam_fScreenHeight = 1024;
     public static float gam_fGameScale = 0.75f;
