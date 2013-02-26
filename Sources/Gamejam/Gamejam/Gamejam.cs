@@ -19,6 +19,12 @@ namespace Gamejam
     public Gamejam()
     {
       graphics = new GraphicsDeviceManager(this);
+      graphics.PreferredBackBufferWidth = 600;
+      graphics.PreferredBackBufferHeight = 800;
+
+      // we only use the Content object for actual content that has to be
+      // compiled, we don't use it for things like textures/sounds, as these
+      // are handled by ContentManager.
 #if DEBUG
       Content.RootDirectory = "..\\..\\Content";
 #else
@@ -58,8 +64,9 @@ namespace Gamejam
 
     protected override void Draw(GameTime gameTime)
     {
-      GraphicsDevice.Clear(Color.CornflowerBlue);
+      GraphicsDevice.Clear(Color.White);
       spriteBatch.Begin();
+
 
 
       spriteBatch.End();
