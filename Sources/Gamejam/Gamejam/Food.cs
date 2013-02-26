@@ -16,7 +16,8 @@ namespace Gamejam
     }
     public override void Render()
     {
-      Gamejam.SpriteBatch.Draw(Content.GetTexture("TestFood.png"), ent_vPosition, Color.White);
+      Gamejam.SpriteBatch.Draw(CContent.GetTexture("TestFood.png"),
+        ent_vPosition, Color.White);
 
       base.Render();
     }
