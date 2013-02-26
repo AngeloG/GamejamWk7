@@ -51,16 +51,6 @@ namespace Gamejam
       get { return Instance.spriteBatch; }
     }
 
-    public static int ScreenWidth
-    {
-      get { return Instance.graphics.PreferredBackBufferWidth; }
-    }
-
-    public static int ScreenHeight
-    {
-      get { return Instance.graphics.PreferredBackBufferWidth; }
-    }
-
     public Gamejam()
     {
       Instance = this;

@@ -18,6 +18,16 @@ namespace Gamejam
       return !IsKeyPressed(key);
     }
 
+    public static bool IsAnyKeyPressed(params Keys[] keys)
+    {
+      for (int i = 0; i < keys.Length; i++) {
+        if (IsKeyPressed(keys[i])) {
+          return true;
+        }
+      }
+      return false;
+    }
+
     public static bool IsMouseLeftPressed()
     {
       return Mouse.GetState().LeftButton == ButtonState.Pressed;
