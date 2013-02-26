@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Gamejam
 {
@@ -12,6 +13,9 @@ namespace Gamejam
 
     public Vector2 ent_vPosition;
     public Vector2 ent_vVelocity;
+    public Vector2 ent_vSize;
+
+    public Texture2D ent_texTexture;
 
     public Entity()
     {
@@ -23,6 +27,19 @@ namespace Gamejam
     {
       ent_strClassName = GetType().Name;
       Gamejam.gam_aEntities.Add(this);
+    }
+
+    public void SetTexture(string strFilename)
+    {
+      ent_texTexture = Content.GetTexture(strFilename);
+      ent_vSize = new Vector2(ent_texTexture.Width, ent_texTexture.Height);
+    }
+
+    public Rectangle GetCollision()
+    {
+      return new Rectangle(
+        (int)ent_vPosition.X, (int)ent_vPosition.Y,
+        (int)ent_vSize.X, (int)ent_vSize.Y);
     }
 
     public virtual void Update()

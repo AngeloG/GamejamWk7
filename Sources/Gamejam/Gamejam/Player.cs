@@ -7,5 +7,23 @@ namespace Gamejam
 {
   public class Player : Entity
   {
+    public Player()
+    {
+
+    }
+
+    public override void Update()
+    {
+
+
+      base.Update();
+    }
+
+    public override void Render()
+    {
+
+
+      base.Render();
+    }
   }
 }

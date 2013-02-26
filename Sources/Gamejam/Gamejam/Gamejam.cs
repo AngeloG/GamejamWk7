@@ -123,7 +123,7 @@ namespace Gamejam
       spriteBatch.Begin();
 
       for (int i = 0; i < gam_aEntities.Count(); i++) {
-        gam_aEntities[i].Update();
+        gam_aEntities[i].Render();
       }
 
       spriteBatch.End();
