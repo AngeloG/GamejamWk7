@@ -9,14 +9,14 @@ namespace Gamejam
 {
   public class Player : Entity
   {
-    public float ent_fSpeed = 3.0f;
+    public float ent_fSpeed = 5.0f;
 
     public Player()
     {
       SetTexture("Player.png");
       ent_vPosition = new Vector2(
-        Gamejam.gam_fScreenWidth / 2,    // x
-        Gamejam.gam_fScreenHeight - 30); // y
+        Gamejam.gam_fScreenWidth / 2,                 // x
+        Gamejam.gam_fScreenHeight - ent_vSize.Y / 2); // y
     }
 
     public override void Update()
