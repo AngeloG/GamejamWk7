@@ -46,6 +46,19 @@ namespace Gamejam
 
     public static Gamejam Instance;
 
+    public static SpriteBatch SpriteBatch
+    {
+      get { return Instance.spriteBatch; }
+    }
+    public static int ScreenWidth
+    {
+      get { return Instance.graphics.PreferredBackBufferWidth; }
+    }
+    public static int ScreenHeight
+    {
+      get { return Instance.graphics.PreferredBackBufferWidth; }
+    }
+
     public Gamejam()
     {
       Instance = this;
@@ -95,7 +108,9 @@ namespace Gamejam
         this.Exit();
       }
 
-
+      for (int i = 0; i < gam_aEntities.Count(); i++) {
+        gam_aEntities[i].Update();
+      }
 
       base.Update(gameTime);
     }
@@ -105,7 +120,9 @@ namespace Gamejam
       GraphicsDevice.Clear(Color.White);
       spriteBatch.Begin();
 
-
+      for (int i = 0; i < gam_aEntities.Count(); i++) {
+        gam_aEntities[i].Update();
+      }
 
       spriteBatch.End();
       base.Draw(gameTime);
