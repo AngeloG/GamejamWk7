@@ -82,6 +82,10 @@ namespace Gamejam
       // add player
       Player ply = new Player();
       ply.Initialize();
+
+      //testing food rendering
+      Food testFood = new Food();
+      testFood.Initialize();
     }
 
     protected override void LoadContent()
