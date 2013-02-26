@@ -32,6 +32,7 @@ namespace Gamejam
 
       cm_dicTextures = new Dictionary<string, Texture2D>();
       cm_dicSounds = new Dictionary<string, SoundEffect>();
+      cm_dicFonts = new Dictionary<string, SpriteFont>();
     }
 
     public static Texture2D GetTexture(string strFilename)
