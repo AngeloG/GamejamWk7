@@ -58,7 +58,7 @@ namespace Gamejam
 
     public override void OnCollisionEnter(Entity entOther)
     {
-
+      Gamejam.PlaySound("Splash.wav");
 
       base.OnCollisionEnter(entOther);
     }
