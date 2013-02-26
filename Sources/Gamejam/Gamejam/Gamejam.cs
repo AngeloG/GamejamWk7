@@ -17,8 +17,8 @@ namespace Gamejam
     public GraphicsDeviceManager graphics;
     public SpriteBatch spriteBatch;
 
-    private static float gam_fScreenWidth = 768;
-    private static float gam_fScreenHeight = 1024;
+    public static float gam_fScreenWidth = 768;
+    public static float gam_fScreenHeight = 1024;
     public static float gam_fGameScale = 0.75f;
 
     public static List<Entity> gam_aEntities = new List<Entity>();
