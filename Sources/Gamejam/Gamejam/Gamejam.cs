@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
+using System.IO;
 
 namespace Gamejam
 {
@@ -99,7 +100,40 @@ namespace Gamejam
     {
       spriteBatch = new SpriteBatch(GraphicsDevice);
 
+      // precache all files
+      string[] astrFiles = Directory.GetFiles(Content.RootDirectory);
+      for (int i = 0; i < astrFiles.Length; i++) {
+        string strFileName = astrFiles[i];
+        strFileName = strFileName.Replace(Content.RootDirectory + "\\", "");
 
+        Console.Write("Precaching " + strFileName + "... ");
+
+        bool bFound = false;
+
+        // if .xnb, this is _probably_ a font...
+        if (strFileName.EndsWith(".xnb")) {
+          CContent.GetFont(strFileName.Replace(".xnb", ""));
+          bFound = true;
+        }
+
+        // if .wav, it's a sound
+        if (strFileName.EndsWith(".wav")) {
+          CContent.GetSound(strFileName);
+          bFound = true;
+        }
+
+        // if .png, it's a texture
+        if (strFileName.EndsWith(".png")) {
+          CContent.GetTexture(strFileName);
+          bFound = true;
+        }
+
+        if (bFound) {
+          Console.WriteLine("Done");
+        } else {
+          Console.WriteLine("Not a precachable file");
+        }
+      }
     }
 
     protected override void UnloadContent()
