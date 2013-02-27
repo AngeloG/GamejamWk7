@@ -13,6 +13,13 @@ using System.IO;
 
 namespace Gamejam
 {
+  public enum GameState
+  {
+    Game,
+    StartScreen,
+    HighScores,
+  }
+
   public class Gamejam : Microsoft.Xna.Framework.Game
   {
     public GraphicsDeviceManager graphics;
@@ -23,6 +30,8 @@ namespace Gamejam
     public static float gam_fScreenWidth = 768;
     public static float gam_fScreenHeight = 1024;
     public static float gam_fGameScale = 0.75f;
+
+    public static GameState gam_gsGameState = GameState.StartScreen;
 
     public static List<Entity> gam_aEntities = new List<Entity>();
 
