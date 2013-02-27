@@ -88,6 +88,8 @@ namespace Gamejam
 #else
       Content.RootDirectory = "..\\Content";
 #endif
+
+      IsMouseVisible = true;
     }
 
     protected override void Initialize()
@@ -148,14 +150,50 @@ namespace Gamejam
 
     }
 
+    public Rectangle GetScreenRectangle()
+    {
+      return new Rectangle(
+        0, 0, // x, y
+        (int)(gam_fScreenWidth * gam_fGameScale),   // w
+        (int)(gam_fScreenHeight * gam_fGameScale)); // h
+    }
+
+    public bool IsAreaClicked(Rectangle rectArea)
+    {
+      // scale area to game window
+      int iLeft = (int)((float)rectArea.Left * gam_fGameScale);
+      int iTop = (int)((float)rectArea.Top * gam_fGameScale);
+      int iWidth = (int)((float)rectArea.Width * gam_fGameScale);
+      int iHeight = (int)((float)rectArea.Height * gam_fGameScale);
+      rectArea = new Rectangle(iLeft, iTop, iWidth, iHeight);
+
+      // check click
+      return Input.IsMouseLeftPressed() &&
+        rectArea.Contains(Input.GetMousePosition());
+    }
+
     protected override void Update(GameTime gameTime)
     {
       if (Keyboard.GetState().IsKeyDown(Keys.Escape)) {
         this.Exit();
       }
 
-      for (int i = 0; i < gam_aEntities.Count(); i++) {
-        gam_aEntities[i].Update();
+      switch (gam_gsGameState) {
+        case GameState.Game:
+          for (int i = 0; i < gam_aEntities.Count(); i++) {
+            gam_aEntities[i].Update();
+          }
+          break;
+
+        case GameState.StartScreen:
+          if (IsAreaClicked(new Rectangle(200, 705, 368, 149))) {
+            gam_gsGameState = GameState.Game;
+          }
+          break;
+
+        case GameState.HighScores:
+
+          break;
       }
 
       base.Update(gameTime);
@@ -166,17 +204,27 @@ namespace Gamejam
       GraphicsDevice.Clear(Color.White);
       spriteBatch.Begin();
 
-      // render background
-      spriteBatch.Draw(CContent.GetTexture("Background/Background.png"),
-        new Rectangle(
-          0, 0, // x, y
-          (int)(gam_fScreenWidth * gam_fGameScale),  // w
-          (int)(gam_fScreenHeight * gam_fGameScale)), // h
-          Color.White);
+      switch (gam_gsGameState) {
+        case GameState.Game:
+          // render background
+          spriteBatch.Draw(CContent.GetTexture("Background/Background.png"),
+            GetScreenRectangle(), Color.White);
 
-      // render entities
-      for (int i = 0; i < gam_aEntities.Count(); i++) {
-        gam_aEntities[i].Render();
+          // render entities
+          for (int i = 0; i < gam_aEntities.Count(); i++) {
+            gam_aEntities[i].Render();
+          }
+          break;
+
+        case GameState.StartScreen:
+          // render background
+          spriteBatch.Draw(CContent.GetTexture("Background/StartScherm.png"),
+            GetScreenRectangle(), Color.White);
+          break;
+
+        case GameState.HighScores:
+
+          break;
       }
 
       spriteBatch.End();
