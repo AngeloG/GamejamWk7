@@ -42,7 +42,7 @@ namespace Gamejam
     public static Point GetMousePosition()
     {
       MouseState ms = Mouse.GetState();
-      return new Vector2(ms.X, ms.Y);
+      return new Point(ms.X, ms.Y);
     }
   }
 }
