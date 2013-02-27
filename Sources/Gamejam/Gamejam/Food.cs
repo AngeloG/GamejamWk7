@@ -11,7 +11,7 @@ namespace Gamejam
     public Food()
     {
       SetTexture("TestFood.png");
-      ent_vVelocity.X = 3f;
+      ent_vVelocity.X = (float)Gamejam.rnd.NextDouble() * 4.0f;
       ent_vVelocity.Y = 1;
     }
 
