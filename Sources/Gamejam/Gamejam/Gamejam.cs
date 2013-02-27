@@ -160,8 +160,8 @@ namespace Gamejam
         new Rectangle(
           0, 0, // x, y
           (int)(gam_fScreenWidth * gam_fGameScale),  // w
-          (int)(gam_fScreenHeight * gam_fGameScale)) // h
-          , Color.White);
+          (int)(gam_fScreenHeight * gam_fGameScale)), // h
+          Color.White);
 
       // render entities
       for (int i = 0; i < gam_aEntities.Count(); i++) {
