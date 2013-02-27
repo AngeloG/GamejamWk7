@@ -8,21 +8,26 @@ namespace Gamejam
 {
   class Food : Entity
   {
+    const float LEFT_WALL = 130;
+    const float RIGHT_WALL = 130;
+    static float playWidth = Gamejam.gam_fScreenWidth - LEFT_WALL - RIGHT_WALL;
+
     public Food()
     {
       int iRandomFood = Gamejam.rnd.Next(6) + 1;
       SetTexture("Food/Enemy_" + iRandomFood + ".png");
+      ent_vPosition.X = (float)Gamejam.rnd.NextDouble() * playWidth + LEFT_WALL;
       ent_vVelocity.X = (float)Gamejam.rnd.NextDouble() * 3.0f + 1.0f;
       ent_vVelocity.Y = 1;
     }
 
     public override void Update()
     {
-      if (ent_vPosition.X > Gamejam.gam_fScreenWidth)
+      if (ent_vPosition.X > Gamejam.gam_fScreenWidth - RIGHT_WALL)
       {
         ToggleDirection();
       }
-      else if (ent_vPosition.X < 0)
+      else if (ent_vPosition.X < LEFT_WALL)
       {
         ToggleDirection();
       }
