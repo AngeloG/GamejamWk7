@@ -15,7 +15,7 @@ namespace Gamejam
 
     public Player()
     {
-      SetTexture("Player.png");
+      SetTexture("Spear/Spit.png");
       ent_vPosition = new Vector2(
         Gamejam.gam_fScreenWidth / 2,                 // x
         Gamejam.gam_fScreenHeight - ent_vSize.Y / 3); // y
