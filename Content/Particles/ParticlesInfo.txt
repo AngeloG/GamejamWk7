@@ -1,0 +1,1 @@
+Hey guys we hebben ook wat particles gemaakt in de vorm van sprites. Wij vroegen ons af of dit zo goed is? De particles zijn voor wanneer de spit het fruit raakt.

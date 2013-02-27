@@ -1,0 +1,1 @@
+Hey guys we hebben de food onderdelen verkleind. We hebben GUI onderdelen toegevoegd en in de refference map staat een plaatje met hoe de GUI moet komen. De speer is ook aangepast. We hebben een eigen spalsh sound toegevoegd en we hebben particles toegevoegd lees het text document in de particle map.
