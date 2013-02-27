@@ -10,8 +10,9 @@ namespace Gamejam
   {
     public Food()
     {
-      SetTexture("TestFood.png");
-      ent_vVelocity.X = (float)Gamejam.rnd.NextDouble() * 4.0f;
+      int iRandomFood = Gamejam.rnd.Next(6) + 1;
+      SetTexture("Food/Enemy_" + iRandomFood + ".png");
+      ent_vVelocity.X = (float)Gamejam.rnd.NextDouble() * 3.0f + 1.0f;
       ent_vVelocity.Y = 1;
     }
 
