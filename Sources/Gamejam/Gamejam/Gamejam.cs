@@ -97,7 +97,9 @@ namespace Gamejam
       CContent.Initialize(Content, GraphicsDevice);
 
       // precache all files
-      string[] astrFiles = Directory.GetFiles(Content.RootDirectory);
+      string[] astrFiles = Directory.GetFiles(Content.RootDirectory, "*.*",
+        SearchOption.AllDirectories);
+
       for (int i = 0; i < astrFiles.Length; i++) {
         string strFileName = astrFiles[i];
         strFileName = strFileName.Replace(Content.RootDirectory + "\\", "");
