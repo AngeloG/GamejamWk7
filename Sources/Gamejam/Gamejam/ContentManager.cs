@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using System.IO;
+using Microsoft.Xna.Framework.Media;
 
 namespace Gamejam
 {
@@ -17,6 +18,7 @@ namespace Gamejam
     static Dictionary<string, Texture2D> cm_dicTextures;
     static Dictionary<string, SoundEffect> cm_dicSounds;
     static Dictionary<string, SpriteFont> cm_dicFonts;
+    static Dictionary<string, Song> cm_dicSongs;
 
 #if DEBUG
     static string cm_strPath = "..\\..\\Content\\";
@@ -33,6 +35,7 @@ namespace Gamejam
       cm_dicTextures = new Dictionary<string, Texture2D>();
       cm_dicSounds = new Dictionary<string, SoundEffect>();
       cm_dicFonts = new Dictionary<string, SpriteFont>();
+      cm_dicSongs = new Dictionary<string, Song>();
     }
 
     public static Texture2D GetTexture(string strFilename)
@@ -67,6 +70,19 @@ namespace Gamejam
         SpriteFont fntFont = cm_cmContentManager.Load<SpriteFont>(strFilename);
         cm_dicFonts[strFilename] = fntFont;
         return fntFont;
+      }
+    }
+
+    public static Song GetSong(string strFilename)
+    {
+      if (cm_dicSongs.ContainsKey(strFilename)) {
+        return cm_dicSongs[strFilename];
+      } else {
+        Song song = Song.FromUri("Background Music",
+          new Uri("file" + "://" + Environment.CurrentDirectory + "\\" +
+            cm_strPath + strFilename));
+        cm_dicSongs[strFilename] = song;
+        return song;
       }
     }
   }

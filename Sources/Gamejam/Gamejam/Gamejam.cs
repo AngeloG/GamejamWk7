@@ -98,6 +98,10 @@ namespace Gamejam
 
       CContent.Initialize(Content, GraphicsDevice);
 
+      // start music
+      MediaPlayer.IsRepeating = true;
+      MediaPlayer.Play(CContent.GetSong("BackgroundMusic.mp3"));
+
       // precache all files
       string[] astrFiles = Directory.GetFiles(Content.RootDirectory, "*.*",
         SearchOption.AllDirectories);
