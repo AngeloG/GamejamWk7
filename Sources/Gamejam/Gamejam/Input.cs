@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 namespace Gamejam
 {
@@ -36,6 +37,12 @@ namespace Gamejam
     public static bool IsMouseRightPressed()
     {
       return Mouse.GetState().RightButton == ButtonState.Pressed;
+    }
+
+    public static Point GetMousePosition()
+    {
+      MouseState ms = Mouse.GetState();
+      return new Vector2(ms.X, ms.Y);
     }
   }
 }
