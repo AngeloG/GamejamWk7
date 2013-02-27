@@ -13,6 +13,14 @@ namespace Gamejam
     public float ent_fAttackSpeed = 15.0f;
     public bool ent_bAttacking = false;
 
+    private static readonly Keys[] attackKeys = new Keys[] 
+    {
+      Keys.Up,
+      Keys.Space,
+      Keys.W,
+      Keys.LeftControl
+    };
+
     public Player()
     {
       SetTexture("Spear/Spit.png");
@@ -42,7 +50,7 @@ namespace Gamejam
         }
       }
 
-      if (Input.IsAnyKeyPressed(Keys.Up, Keys.W, Keys.LeftControl)) {
+      if (Input.IsAnyKeyPressed(attackKeys)) {
         ent_bAttacking = true;
       }
 
