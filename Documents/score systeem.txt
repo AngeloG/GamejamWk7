@@ -1,0 +1,19 @@
+Assets:
+Banaan, kip, donut, vis, hamburger, meloen
+
+Combo 2x
+Combo 4x
+Combo 6x
+
+Je krijgt een combo door verschillende soorten voedsel achter elkaar te raken. 
+Om een succesvolle combo te maken moet het laatste wat je hebt geraakt anders zijn dan de volgende.
+
+Banaan       150  punten
+kip          75   punten
+donut        25   punten
+vis          100  punten
+hamburger    50   punten
+meloen       200  punten
+
+Levenspunten
+Je begint het spel 5 levens. Als je een product mist en het verdwijnt onderaan het scherm, word deze afgetrokken van je levens punten.
