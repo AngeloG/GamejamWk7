@@ -12,6 +12,13 @@ namespace Gamejam
     const float RIGHT_WALL = 130;
     static float playWidth = Gamejam.gam_fScreenWidth - LEFT_WALL - RIGHT_WALL;
 
+    public enum StabState
+    {
+      NONE,
+      HIT,
+      STUCK
+    }
+
     public Food()
     {
       int iRandomFood = Gamejam.rnd.Next(6) + 1;
