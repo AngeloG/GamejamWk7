@@ -124,6 +124,9 @@ namespace Gamejam
         {
           Gamejam.PlaySound("Splash.wav");
 
+          new Decal("Particles/Splash_0" + (Gamejam.rnd.Next(4) + 1) + ".png",
+            0.2, entOther.ent_vPosition).Initialize();
+
           foodOther.stabState = Food.StabState.HIT;
           foodOther.stuckTo = this;
         }

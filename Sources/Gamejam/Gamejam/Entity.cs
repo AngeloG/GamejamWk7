@@ -34,6 +34,10 @@ namespace Gamejam
 
     public void Destroy()
     {
+      // call OnDestroy
+      OnDestroy();
+
+      // remove from entities
       Gamejam.gam_aEntities.Remove(this);
 
       // set iterator back because it won't be valid anymore
@@ -88,6 +92,11 @@ namespace Gamejam
     }
 
     public virtual void Render()
+    {
+
+    }
+
+    public virtual void OnDestroy()
     {
 
     }
