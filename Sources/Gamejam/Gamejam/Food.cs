@@ -29,6 +29,10 @@ namespace Gamejam
       SetTexture("Food/Enemy_" + iRandomFood + ".png");
       ent_vPosition.X = (float)Gamejam.rnd.NextDouble() * playWidth + LEFT_WALL;
       ent_vVelocity.X = (float)Gamejam.rnd.NextDouble() * 3.0f + 1.0f;
+      if (Gamejam.rnd.Next(0, 2) == 0)
+      {
+        ent_vVelocity.X *= -1;
+      }
       ent_vVelocity.Y = 1;
     }
 

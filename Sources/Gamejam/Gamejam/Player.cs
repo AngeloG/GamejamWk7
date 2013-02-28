@@ -76,6 +76,7 @@ namespace Gamejam
               if (otherFood.stabState != Food.StabState.NONE)
               {
                 Gamejam.gam_aEntities.Remove(otherFood);
+                i--;
                 //TODO: gain score
               }
             }
@@ -97,15 +98,16 @@ namespace Gamejam
       base.Render();
     }
 
-    public override void OnCollisionEnter(Entity entOther)
+    public override void OnCollision(Entity entOther)
     {
       if (entOther.ent_strClassName == "Food")
       {
-        Gamejam.PlaySound("Splash.wav");
-
         Food foodOther = (Food)entOther;
-        if (foodOther.stabState == Food.StabState.NONE)
+        if (foodOther.stabState == Food.StabState.NONE
+          && Gamejam.GetPlayer().ent_bAttacking == true)
         {
+          Gamejam.PlaySound("Splash.wav");
+
           foodOther.stabState = Food.StabState.HIT;
           foodOther.stuckTo = this;
         }
