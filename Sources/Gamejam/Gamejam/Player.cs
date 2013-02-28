@@ -67,6 +67,10 @@ namespace Gamejam
 
     public override void Update()
     {
+      if (!ent_bAlive) {
+        return;
+      }
+
       if (!ent_bAttacking) {
         if (Input.IsAnyKeyPressed(Keys.Left, Keys.A)) {
           ent_vVelocity.X = -ent_fSpeed;
@@ -117,6 +121,10 @@ namespace Gamejam
 
     public override void Render()
     {
+      if (!ent_bAlive) {
+        return;
+      }
+
       Gamejam.SpriteBatch.Draw(ent_texTexture, GetCollision(), Color.White);
 
       base.Render();
