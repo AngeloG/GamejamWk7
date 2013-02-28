@@ -39,6 +39,10 @@ namespace Gamejam
         ToggleDirection();
       }
 
+      if (ent_vPosition.Y > Gamejam.gam_fScreenHeight + ent_vSize.Y / 2f) {
+        Gamejam.GetPlayer().Hurt();
+      }
+
       base.Update();
     }
 

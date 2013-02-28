@@ -13,6 +13,8 @@ namespace Gamejam
     public float ent_fAttackSpeed = 15.0f;
     public bool ent_bAttacking = false;
 
+    public int ent_iLives = 3;
+
     private static readonly Keys[] attackKeys = new Keys[] 
     {
       Keys.Up,
@@ -27,6 +29,20 @@ namespace Gamejam
       ent_vPosition = new Vector2(
         Gamejam.gam_fScreenWidth / 2,                 // x
         Gamejam.gam_fScreenHeight - ent_vSize.Y / 3); // y
+    }
+
+    public void Die()
+    {
+
+    }
+
+    public void Hurt()
+    {
+      if (ent_iLives == 0) {
+        Die();
+      } else {
+        ent_iLives--;
+      }
     }
 
     public override void Update()
