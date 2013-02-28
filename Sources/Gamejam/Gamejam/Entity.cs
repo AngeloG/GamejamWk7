@@ -31,6 +31,14 @@ namespace Gamejam
       Gamejam.gam_aEntities.Add(this);
     }
 
+    public void Destroy()
+    {
+      Gamejam.gam_aEntities.Remove(this);
+
+      // set iterator back because it won't be valid anymore
+      Gamejam.gam_iEntityIterator--;
+    }
+
     public void SetTexture(string strFilename)
     {
       ent_texTexture = CContent.GetTexture(strFilename);

@@ -31,6 +31,7 @@ namespace Gamejam
     public static float gam_fScreenHeight = 1024;
     public static float gam_fGameScale = 0.75f;
     public static float gam_fSpies = -150;
+    public static int gam_iEntityIterator = 0;
 
     public static GameState gam_gsGameState = GameState.StartScreen;
 
@@ -109,8 +110,11 @@ namespace Gamejam
       string[] astrFiles = Directory.GetFiles(Content.RootDirectory, "*.*",
         SearchOption.AllDirectories);
 
-      for (int i = 0; i < astrFiles.Length; i++) {
-        string strFileName = astrFiles[i];
+      for (gam_iEntityIterator = 0;
+        gam_iEntityIterator < astrFiles.Length;
+        gam_iEntityIterator++)
+      {
+        string strFileName = astrFiles[gam_iEntityIterator];
         strFileName = strFileName.Replace(Content.RootDirectory + "\\", "");
 
         Console.Write("Precaching " + strFileName + "... ");
