@@ -21,7 +21,7 @@ namespace Gamejam
 
     public Food()
     {
-      int iRandomFood = Gamejam.rnd.Next(6) + 1;
+      int iRandomFood = Gamejam.rnd.Next(8) + 1;
       SetTexture("Food/Enemy_" + iRandomFood + ".png");
       ent_vPosition.X = (float)Gamejam.rnd.NextDouble() * playWidth + LEFT_WALL;
       ent_vVelocity.X = (float)Gamejam.rnd.NextDouble() * 3.0f + 1.0f;
