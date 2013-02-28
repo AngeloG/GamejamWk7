@@ -100,6 +100,16 @@ namespace Gamejam
     {
       Gamejam.PlaySound("Splash.wav");
 
+      if (entOther.ent_strClassName == "Food")
+      {
+        Food foodOther = (Food)entOther;
+        if (foodOther.stabState == Food.StabState.NONE)
+        {
+          foodOther.stabState = Food.StabState.HIT;
+          foodOther.stuckTo = this;
+        }
+      }
+
       base.OnCollisionEnter(entOther);
     }
 
