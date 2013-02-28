@@ -17,6 +17,7 @@ namespace Gamejam
 
     public Texture2D ent_texTexture;
 
+    public bool ent_bCanCollide = false;
     public Entity ent_entCollider;
 
     public Entity()
@@ -68,17 +69,19 @@ namespace Gamejam
           continue;
         }
 
-        if (ent.GetCollision().Intersects(GetCollision())) {
-          if (ent.ent_entCollider != this) {
-            ent.ent_entCollider = this;
-            OnCollisionEnter(ent);
+        if (ent_bCanCollide) {
+          if (ent.GetCollision().Intersects(GetCollision())) {
+            if (ent.ent_entCollider != this) {
+              ent.ent_entCollider = this;
+              OnCollisionEnter(ent);
+            } else {
+              OnCollision(ent);
+            }
           } else {
-            OnCollision(ent);
-          }
-        } else {
-          if (ent.ent_entCollider == this) {
-            ent.ent_entCollider = null;
-            OnCollisionLeave(ent);
+            if (ent.ent_entCollider == this) {
+              ent.ent_entCollider = null;
+              OnCollisionLeave(ent);
+            }
           }
         }
       }

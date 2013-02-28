@@ -37,7 +37,7 @@ namespace Gamejam
 
     public static List<Entity> gam_aEntities = new List<Entity>();
 
-    public static TimeSpan gam_tmLastEnemySpawn = new TimeSpan();
+    public static DateTime gam_tmLastEnemySpawn = DateTime.Now;
 
     public static Vector2 ScaleVector(Vector2 v)
     {
@@ -196,6 +196,13 @@ namespace Gamejam
             gam_iEntityIterator++)
           {
             gam_aEntities[gam_iEntityIterator].Update();
+          }
+
+          // if it's time to spawn an enemy
+          if ((DateTime.Now - gam_tmLastEnemySpawn).TotalSeconds > 0.75) {
+            Food food = new Food();
+            food.Initialize();
+            gam_tmLastEnemySpawn = DateTime.Now;
           }
           break;
 

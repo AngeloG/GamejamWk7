@@ -32,6 +32,7 @@ namespace Gamejam
       ent_vPosition = new Vector2(
         Gamejam.gam_fScreenWidth / 2,                 // x
         Gamejam.gam_fScreenHeight - ent_vSize.Y / 3); // y
+      ent_bCanCollide = true;
     }
 
     public void Die()
@@ -98,10 +99,10 @@ namespace Gamejam
 
     public override void OnCollisionEnter(Entity entOther)
     {
-      Gamejam.PlaySound("Splash.wav");
-
       if (entOther.ent_strClassName == "Food")
       {
+        Gamejam.PlaySound("Splash.wav");
+
         Food foodOther = (Food)entOther;
         if (foodOther.stabState == Food.StabState.NONE)
         {
