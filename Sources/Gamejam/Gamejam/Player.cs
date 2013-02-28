@@ -66,6 +66,19 @@ namespace Gamejam
         if (ent_vPosition.Y <= 0) {
           ent_bAttacking = false;
           ent_vPosition.Y = Gamejam.gam_fScreenHeight - ent_vSize.Y / 3;
+
+          for (int i = 0; i < Gamejam.gam_aEntities.Count; i++)
+          {
+            if (Gamejam.gam_aEntities[i].ent_strClassName == "Food")
+            {
+              Food otherFood = (Food)Gamejam.gam_aEntities[i];
+              if (otherFood.stabState != Food.StabState.NONE)
+              {
+                Gamejam.gam_aEntities.Remove(otherFood);
+                //TODO: gain score
+              }
+            }
+          }
         }
       }
 
