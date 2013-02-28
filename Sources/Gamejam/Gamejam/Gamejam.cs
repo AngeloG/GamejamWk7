@@ -208,6 +208,20 @@ namespace Gamejam
             food.Initialize();
             gam_tmLastEnemySpawn = DateTime.Now;
           }
+
+          if (IsAreaClicked(
+            new Rectangle(
+              0,0,
+              CContent.GetTexture("GUI/GUI_ReplayButton.png").Width,
+              CContent.GetTexture("GUI/GUI_ReplayButton.png").Height
+              )
+            )
+          )
+          {
+            gam_gsGameState = GameState.StartScreen;
+          }
+
+
           break;
 
         case GameState.StartScreen:
@@ -258,6 +272,9 @@ namespace Gamejam
           for (int i = 0; i < gam_aEntities.Count(); i++) {
             gam_aEntities[i].Render();
           }
+
+          spriteBatch.Draw(CContent.GetTexture("GUI/GUI_ReplayButton.png"),
+            Vector2.Zero, Color.White);
 
           // if dead, render Game Over
           if (!GetPlayer().ent_bAlive) {
