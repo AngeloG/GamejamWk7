@@ -84,17 +84,21 @@ namespace Gamejam
       graphics.PreferredBackBufferWidth = (int)fScreenW;
       graphics.PreferredBackBufferHeight = (int)fScreenH;
 
-      // we only use the Content object for actual content that has to be
-      // compiled, we don't use it for things like textures/sounds, as these
-      // are handled by ContentManager.
-#if DEBUG
-      Content.RootDirectory = "..\\..\\Content";
-#else
-      Content.RootDirectory = "..\\Content";
-#endif
+      
+      Content.RootDirectory = "";
 
       IsMouseVisible = true;
     }
+
+    // we only use the Content object for actual content that has to be
+    // compiled, we don't use it for things like textures/sounds, as these
+    // are handled by ContentManager.
+
+#if DEBUG
+    string ContentRootDirectory = "..\\..\\Content";
+#else
+      string ContentRootDirectory = "..\\Content";
+#endif
 
     protected override void Initialize()
     {
@@ -109,12 +113,12 @@ namespace Gamejam
 #endif
 
       // precache all files
-      string[] astrFiles = Directory.GetFiles(Content.RootDirectory, "*.*",
+      string[] astrFiles = Directory.GetFiles(ContentRootDirectory, "*.*",
         SearchOption.AllDirectories);
 
       for (int i = 0; i < astrFiles.Length; i++) {
         string strFileName = astrFiles[i];
-        strFileName = strFileName.Replace(Content.RootDirectory + "\\", "");
+        strFileName = strFileName.Replace(ContentRootDirectory + "\\", "");
 
         Console.Write("Precaching " + strFileName + "... ");
 
@@ -259,6 +263,12 @@ namespace Gamejam
           if (!GetPlayer().ent_bAlive) {
             spriteBatch.Draw(CContent.GetTexture("Background/GameOver.png"),
               GetScreenRectangle(), Color.White);
+            //render score
+            spriteBatch.DrawString(
+              CContent.GetFont("Arial12"),
+              GetPlayer().GetScore().ToString(),
+              ScaleVector(new Vector2(gam_fScreenWidth / 2, 390)),
+              Color.White);
           }
           break;
 

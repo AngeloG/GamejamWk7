@@ -56,6 +56,11 @@ namespace Gamejam
       score += addedScore;
     }
 
+    public int GetScore()
+    {
+      return score;
+    }
+
     private int entitiesDestroyed = 0;
 
     public override void Update()
