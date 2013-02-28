@@ -245,6 +245,12 @@ namespace Gamejam
           for (int i = 0; i < gam_aEntities.Count(); i++) {
             gam_aEntities[i].Render();
           }
+
+          // if dead, render Game Over
+          if (!GetPlayer().ent_bAlive) {
+            spriteBatch.Draw(CContent.GetTexture("Background/GameOver.png"),
+              GetScreenRectangle(), Color.White);
+          }
           break;
 
         case GameState.StartScreen:
