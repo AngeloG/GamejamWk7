@@ -16,6 +16,8 @@ namespace Gamejam
     public int ent_iLives = 3;
     public bool ent_bAlive = true;
 
+    public int ent_iCombo = 0;
+
     private int score = 0;
 
     public int stuckFoodCount = 0;
@@ -81,6 +83,7 @@ namespace Gamejam
         if (ent_vPosition.Y <= 0) {
           ent_bAttacking = false;
           ent_vPosition.Y = Gamejam.gam_fScreenHeight - ent_vSize.Y / 3;
+          ent_iCombo = 0;
 
           entitiesDestroyed = 0;
           for (int i = 0; i < Gamejam.gam_aEntities.Count; i++)
@@ -127,6 +130,13 @@ namespace Gamejam
         if (foodOther.stabState == Food.StabState.NONE
           && Gamejam.GetPlayer().ent_bAttacking == true)
         {
+          ent_iCombo++;
+
+          if (ent_iCombo % 2 == 0 && ent_iCombo <= 6) {
+            new Decal("Combo/Combo" + ent_iCombo + "x.png",
+              1, ent_vPosition).Initialize();
+          }
+
           Gamejam.PlaySound("Splash.wav");
 
           new Decal("Particles/Splash_0" + (Gamejam.rnd.Next(4) + 1) + ".png",
