@@ -30,6 +30,7 @@ namespace Gamejam
     public static float gam_fScreenWidth = 768;
     public static float gam_fScreenHeight = 1024;
     public static float gam_fGameScale = 0.75f;
+    public static float gam_fSpies = -150;
 
     public static GameState gam_gsGameState = GameState.StartScreen;
 
@@ -192,8 +193,27 @@ namespace Gamejam
           break;
 
         case GameState.StartScreen:
+          // start game button
           if (IsAreaClicked(new Rectangle(200, 705, 368, 149))) {
             gam_gsGameState = GameState.Game;
+          }
+
+          // show pony button
+          if (IsAreaClicked(new Rectangle(333, 147, 18, 24))) {
+            if (gam_fSpies == -150) {
+              gam_fSpies = -149;
+              PlaySound("Yay.wav");
+            }
+          }
+
+          if (gam_fSpies > -150) {
+            gam_fSpies += 10f;
+            if (gam_fSpies == 321f) {
+              PlaySound("Squee.wav");
+            }
+            if (gam_fSpies > gam_fScreenWidth) {
+              gam_fSpies = -150;
+            }
           }
           break;
 
@@ -208,7 +228,7 @@ namespace Gamejam
     protected override void Draw(GameTime gameTime)
     {
       GraphicsDevice.Clear(Color.White);
-      spriteBatch.Begin();
+      spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 
       switch (gam_gsGameState) {
         case GameState.Game:
@@ -226,6 +246,16 @@ namespace Gamejam
           // render background
           spriteBatch.Draw(CContent.GetTexture("Background/StartScherm.png"),
             GetScreenRectangle(), Color.White);
+
+          Rectangle rectPinkie = new Rectangle(
+            (int)(gam_fSpies * gam_fGameScale), // x
+            (int)(100f * gam_fGameScale),       // y
+            (int)(150f * gam_fGameScale),       // w
+            (int)(150f * gam_fGameScale));      // h
+
+          // render spy
+          spriteBatch.Draw(CContent.GetTexture("Pinkie.png"), rectPinkie,
+            Color.White);
           break;
 
         case GameState.HighScores:
