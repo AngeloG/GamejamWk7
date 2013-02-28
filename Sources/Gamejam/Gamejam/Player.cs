@@ -16,6 +16,8 @@ namespace Gamejam
     public int ent_iLives = 3;
     public bool ent_bAlive = true;
 
+    public int stuckFoodCount = 0;
+
     private static readonly Keys[] attackKeys = new Keys[] 
     {
       Keys.Up,

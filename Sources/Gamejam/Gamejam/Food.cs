@@ -12,6 +12,10 @@ namespace Gamejam
     const float RIGHT_WALL = 130;
     static float playWidth = Gamejam.gam_fScreenWidth - LEFT_WALL - RIGHT_WALL;
 
+    public StabState stabState;
+    public Entity stuckTo;
+    public Vector2 stuckOffset;
+
     public enum StabState
     {
       NONE,
@@ -30,15 +34,43 @@ namespace Gamejam
 
     public override void Update()
     {
-      if (ent_vPosition.X > Gamejam.gam_fScreenWidth - RIGHT_WALL
-        || ent_vPosition.X < LEFT_WALL)
-      {
-        ToggleDirection();
-      }
+      
 
       if (ent_vPosition.Y > Gamejam.gam_fScreenHeight + ent_vSize.Y / 2f) {
         Gamejam.GetPlayer().Hurt();
         Destroy();
+      }
+
+      switch (stabState)
+      {
+        case StabState.NONE:
+          if (ent_vPosition.X > Gamejam.gam_fScreenWidth - RIGHT_WALL
+            || ent_vPosition.X < LEFT_WALL)
+            {
+              ToggleDirection();
+            }
+          if (ent_vPosition.Y > Gamejam.gam_fScreenHeight + ent_vSize.Y / 2f)
+          {
+            Gamejam.GetPlayer().Hurt();
+            Destroy();
+          }
+          break;
+        case StabState.HIT:
+          ent_vVelocity = Vector2.Zero;
+
+          if (stuckTo.ent_vPosition.Y - this.ent_vPosition.Y < -30
+            + ((Player)stuckTo).stuckFoodCount * 30)
+          {
+            this.stabState = StabState.STUCK;
+            this.stuckOffset = this.ent_vPosition - stuckTo.ent_vPosition;
+          }
+
+          break;
+        case StabState.STUCK:
+          ent_vVelocity = Vector2.Zero;
+          ent_vPosition = stuckTo.ent_vPosition + stuckOffset;
+
+          break;
       }
 
       base.Update();
