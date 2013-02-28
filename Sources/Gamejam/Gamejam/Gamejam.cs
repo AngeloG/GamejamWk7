@@ -37,6 +37,8 @@ namespace Gamejam
 
     public static List<Entity> gam_aEntities = new List<Entity>();
 
+    public static TimeSpan gam_tmLastEnemySpawn = new TimeSpan();
+
     public static Vector2 ScaleVector(Vector2 v)
     {
       return v * gam_fGameScale;
