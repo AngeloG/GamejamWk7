@@ -16,6 +16,8 @@ namespace Gamejam
     public int ent_iLives = 3;
     public bool ent_bAlive = true;
 
+    private int score = 0;
+
     public int stuckFoodCount = 0;
 
     private static readonly Keys[] attackKeys = new Keys[] 
@@ -49,6 +51,13 @@ namespace Gamejam
       }
     }
 
+    public void GainScore(int addedScore)
+    {
+      score += addedScore;
+    }
+
+    private int entitiesDestroyed = 0;
+
     public override void Update()
     {
       if (!ent_bAttacking) {
@@ -68,6 +77,7 @@ namespace Gamejam
           ent_bAttacking = false;
           ent_vPosition.Y = Gamejam.gam_fScreenHeight - ent_vSize.Y / 3;
 
+          entitiesDestroyed = 0;
           for (int i = 0; i < Gamejam.gam_aEntities.Count; i++)
           {
             if (Gamejam.gam_aEntities[i].ent_strClassName == "Food")
@@ -77,10 +87,16 @@ namespace Gamejam
               {
                 Gamejam.gam_aEntities.Remove(otherFood);
                 i--;
-                //TODO: gain score
+                entitiesDestroyed++;
               }
             }
           }
+          GainScore((int)Math.Pow(entitiesDestroyed, 2));
+#if DEBUG
+          Console.WriteLine("Score added: {0}. Total score now {1}",
+            (int)Math.Pow(entitiesDestroyed, 2),
+            score);
+#endif
         }
       }
 
