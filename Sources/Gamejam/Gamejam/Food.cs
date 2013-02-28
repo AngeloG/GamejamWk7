@@ -38,6 +38,7 @@ namespace Gamejam
 
       if (ent_vPosition.Y > Gamejam.gam_fScreenHeight + ent_vSize.Y / 2f) {
         Gamejam.GetPlayer().Hurt();
+        Destroy();
       }
 
       base.Update();
