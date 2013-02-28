@@ -110,11 +110,8 @@ namespace Gamejam
       string[] astrFiles = Directory.GetFiles(Content.RootDirectory, "*.*",
         SearchOption.AllDirectories);
 
-      for (gam_iEntityIterator = 0;
-        gam_iEntityIterator < astrFiles.Length;
-        gam_iEntityIterator++)
-      {
-        string strFileName = astrFiles[gam_iEntityIterator];
+      for (int i = 0; i < astrFiles.Length; i++) {
+        string strFileName = astrFiles[i];
         strFileName = strFileName.Replace(Content.RootDirectory + "\\", "");
 
         Console.Write("Precaching " + strFileName + "... ");
@@ -191,8 +188,12 @@ namespace Gamejam
 
       switch (gam_gsGameState) {
         case GameState.Game:
-          for (int i = 0; i < gam_aEntities.Count(); i++) {
-            gam_aEntities[i].Update();
+          // update entities
+          for (gam_iEntityIterator = 0;
+            gam_iEntityIterator < gam_aEntities.Count();
+            gam_iEntityIterator++)
+          {
+            gam_aEntities[gam_iEntityIterator].Update();
           }
           break;
 
