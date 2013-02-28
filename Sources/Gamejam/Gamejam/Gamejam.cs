@@ -142,14 +142,18 @@ namespace Gamejam
           Console.WriteLine("Not a precachable file");
         }
       }
+    }
+
+    public void NewGame()
+    {
+      // clear entities
+      gam_aEntities.Clear();
 
       // add player
       Player ply = new Player();
       ply.Initialize();
 
-      //testing food rendering
-      Food testFood = new Food();
-      testFood.Initialize();
+      gam_gsGameState = GameState.Game;
     }
 
     protected override void LoadContent()
@@ -227,7 +231,7 @@ namespace Gamejam
         case GameState.StartScreen:
           // start game button
           if (IsAreaClicked(new Rectangle(200, 705, 368, 149))) {
-            gam_gsGameState = GameState.Game;
+            NewGame();
           }
 
           // show pony button
