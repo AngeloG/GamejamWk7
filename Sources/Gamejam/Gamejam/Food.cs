@@ -30,11 +30,8 @@ namespace Gamejam
 
     public override void Update()
     {
-      if (ent_vPosition.X > Gamejam.gam_fScreenWidth - RIGHT_WALL)
-      {
-        ToggleDirection();
-      }
-      else if (ent_vPosition.X < LEFT_WALL)
+      if (ent_vPosition.X > Gamejam.gam_fScreenWidth - RIGHT_WALL
+        || ent_vPosition.X < LEFT_WALL)
       {
         ToggleDirection();
       }
