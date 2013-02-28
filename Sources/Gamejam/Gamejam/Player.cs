@@ -14,6 +14,7 @@ namespace Gamejam
     public bool ent_bAttacking = false;
 
     public int ent_iLives = 3;
+    public bool ent_bAlive = true;
 
     private static readonly Keys[] attackKeys = new Keys[] 
     {
@@ -33,7 +34,7 @@ namespace Gamejam
 
     public void Die()
     {
-
+      ent_bAlive = false;
     }
 
     public void Hurt()
